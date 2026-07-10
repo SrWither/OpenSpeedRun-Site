@@ -4,7 +4,7 @@ import TheFooter from '@/components/TheFooter.vue'
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col bg-base text-ink">
+  <div class="flex min-h-screen flex-col bg-canvas text-ink">
     <TheHeader />
     <main class="flex-1">
       <RouterView v-slot="{ Component }">

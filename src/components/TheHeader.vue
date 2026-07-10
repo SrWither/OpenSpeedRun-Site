@@ -20,7 +20,7 @@ const links = [
 
 <template>
   <header
-    class="sticky top-0 z-40 border-b border-border bg-base/80 backdrop-blur supports-[backdrop-filter]:bg-base/60"
+    class="sticky top-0 z-40 border-b border-border bg-canvas/80 backdrop-blur supports-[backdrop-filter]:bg-canvas/60"
   >
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
       <RouterLink to="/" class="flex items-center gap-2.5" @click="mobileOpen = false">

@@ -4,8 +4,15 @@
    src/composables/useTheme.ts), rather than only following the OS setting. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Named "canvas" rather than "base" on purpose: Tailwind's own font-size
+   scale already owns the name `text-base` (1rem). A custom color named
+   "base" would make Tailwind treat `text-base` as a *color* utility
+   (text color = this variable) instead of a font-size one, silently
+   turning every `text-base` in the codebase invisible (text color ==
+   page background). Don't reuse other core scale names either
+   (sm/lg/xl/2xl/.../DEFAULT) for the same reason. */
 :root {
-  --color-base: #faf6ef;
+  --color-canvas: #faf6ef;
   --color-surface: #ffffff;
   --color-surface-alt: #f3ead9;
   --color-border: #e6d9c2;
@@ -19,7 +26,7 @@
 }
 
 .dark {
-  --color-base: #120e0a;
+  --color-canvas: #120e0a;
   --color-surface: #1c1611;
   --color-surface-alt: #241c14;
   --color-border: #392c1f;
@@ -33,7 +40,7 @@
 }
 
 @theme inline {
-  --color-base: var(--color-base);
+  --color-canvas: var(--color-canvas);
   --color-surface: var(--color-surface);
   --color-surface-alt: var(--color-surface-alt);
   --color-border: var(--color-border);
@@ -60,7 +67,7 @@ html {
 }
 
 body {
-  background-color: var(--color-base);
+  background-color: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
   transition:
