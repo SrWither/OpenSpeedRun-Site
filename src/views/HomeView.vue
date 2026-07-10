@@ -1,5 +1,28 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted, ref } from "vue";
 import FeatureCard from "@/components/FeatureCard.vue";
+
+// Purely decorative: makes the hero clock look like a live, running timer
+// instead of a static screenshot. Loops every 60s so it never grows a
+// second digit and unbalances the layout.
+const heroClock = ref("00:00.000");
+let rafId = 0;
+let startedAt = 0;
+
+function tick() {
+  const elapsed = (performance.now() - startedAt) % 60000;
+  const seconds = Math.floor(elapsed / 1000);
+  const millis = Math.floor(elapsed % 1000);
+  heroClock.value = `00:${String(seconds).padStart(2, "0")}.${String(millis).padStart(3, "0")}`;
+  rafId = requestAnimationFrame(tick);
+}
+
+onMounted(() => {
+  startedAt = performance.now();
+  rafId = requestAnimationFrame(tick);
+});
+
+onUnmounted(() => cancelAnimationFrame(rafId));
 </script>
 
 <template>
@@ -15,7 +38,7 @@ import FeatureCard from "@/components/FeatureCard.vue";
             open-source &middot; Unix-exclusive
           </span>
 
-          <h1 class="mt-6 text-4xl font-extrabold tracking-tight sm:text-6xl">
+          <h1 class="text-glow mt-6 text-4xl font-extrabold tracking-tight sm:text-6xl">
             A speedrun timer, <span class="text-accent">built for Unix.</span>
           </h1>
 
@@ -43,9 +66,9 @@ import FeatureCard from "@/components/FeatureCard.vue";
           </div>
 
           <div
-            class="mx-auto mt-3 w-fit font-mono text-6xl font-bold tabular-nums text-accent/90 sm:text-7xl"
+            class="text-glow mx-auto mt-3 w-fit font-mono text-6xl font-bold tabular-nums text-accent/90 sm:text-7xl"
           >
-            00:00.000
+            {{ heroClock }}
           </div>
         </div>
 
@@ -85,7 +108,7 @@ import FeatureCard from "@/components/FeatureCard.vue";
     <!-- Features -->
     <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-2xl font-bold sm:text-3xl">Everything a runner actually needs</h2>
+        <h2 class="text-glow text-2xl font-bold sm:text-3xl">Everything a runner actually needs</h2>
         <p class="mt-3 text-ink-muted">
           Lightweight, scriptable, and yours to theme — no bloat, no lock-in.
         </p>
@@ -124,7 +147,7 @@ import FeatureCard from "@/components/FeatureCard.vue";
     <!-- Screenshots -->
     <section class="border-y border-border bg-surface-alt/40">
       <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <h2 class="text-center text-2xl font-bold sm:text-3xl">Configure it your way</h2>
+        <h2 class="text-glow text-center text-2xl font-bold sm:text-3xl">Configure it your way</h2>
         <p class="mx-auto mt-3 max-w-xl text-center text-ink-muted">
           A dedicated config app for splits, themes, and shaders — separate from the timer itself,
           so you never fumble a menu mid-run.
@@ -147,7 +170,7 @@ import FeatureCard from "@/components/FeatureCard.vue";
 
     <!-- Binaries -->
     <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-      <h2 class="text-2xl font-bold sm:text-3xl">Four small, focused binaries</h2>
+      <h2 class="text-glow text-2xl font-bold sm:text-3xl">Four small, focused binaries</h2>
       <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="rounded-lg border border-border p-4">
           <code class="font-mono text-sm font-semibold text-accent">openspeedrun</code>
@@ -177,7 +200,7 @@ import FeatureCard from "@/components/FeatureCard.vue";
     <!-- CTA band -->
     <section class="border-t border-border bg-surface-alt/40">
       <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
-        <h2 class="text-2xl font-bold sm:text-3xl">Ready to time your next run?</h2>
+        <h2 class="text-glow text-2xl font-bold sm:text-3xl">Ready to time your next run?</h2>
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <RouterLink
             to="/downloads"

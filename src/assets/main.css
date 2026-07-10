@@ -87,6 +87,15 @@ body {
   );
 }
 
+/* A soft neon glow for big hero/section titles, tinted to whatever color
+   the text already has (via currentColor) so it works on both accent-
+   colored and plain ink-colored headings without a separate variant. */
+.text-glow {
+  text-shadow:
+    0 0 12px color-mix(in srgb, currentColor 50%, transparent),
+    0 0 32px color-mix(in srgb, currentColor 25%, transparent);
+}
+
 /* A blinking terminal-style cursor, used next to the logo/wordmark. */
 .blink-cursor::after {
   content: "_";
