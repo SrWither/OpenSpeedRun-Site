@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faLinux, faWindows, faApple, faFreebsd, faArchLinux } from '@fortawesome/free-brands-svg-icons'
 import CodeBlock from '@/components/CodeBlock.vue'
 import PlatformCard from '@/components/PlatformCard.vue'
 
@@ -23,7 +25,7 @@ const releasesUrl = 'https://github.com/SrWither/OpenSpeedRun/releases'
     </div>
 
     <div class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
-      <PlatformCard icon="🐧" title="Linux" note="openspeedrun-linux-gnu-x86_64.zip">
+      <PlatformCard :icon="faLinux" title="Linux" note="openspeedrun-linux-gnu-x86_64.zip">
         <ol class="list-decimal space-y-2 pl-4 text-ink-muted">
           <li>Download and unzip the archive from the Releases page.</li>
           <li>
@@ -37,20 +39,19 @@ const releasesUrl = 'https://github.com/SrWither/OpenSpeedRun/releases'
 chmod +x openspeedrun openspeedrun-cfg openspeedrun-cli openspeedrun-autosplitter
 ./openspeedrun"
         />
-        <p class="text-ink-muted">
-          Arch-based distros can also install from the
-          <a
-            href="https://aur.archlinux.org/packages/openspeedrun-bin"
-            target="_blank"
-            rel="noopener"
-            class="text-accent hover:underline"
-            >AUR</a
-          >:
-        </p>
+        <a
+          href="https://aur.archlinux.org/packages/openspeedrun-bin"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 rounded-md border border-border bg-surface-alt px-3 py-2 text-sm transition-colors hover:border-accent/50"
+        >
+          <FontAwesomeIcon :icon="faArchLinux" class="h-5 w-5 text-accent" />
+          <span>Also on the <strong class="text-ink">AUR</strong>: <code class="font-mono text-xs">openspeedrun-bin</code></span>
+        </a>
         <CodeBlock label="terminal" code="paru -S openspeedrun-bin" />
       </PlatformCard>
 
-      <PlatformCard icon="🪟" title="Windows" note="openspeedrun-windows-x86_64.zip">
+      <PlatformCard :icon="faWindows" title="Windows" note="openspeedrun-windows-x86_64.zip">
         <ol class="list-decimal space-y-2 pl-4 text-ink-muted">
           <li>Download and extract the zip anywhere, e.g. <code class="font-mono text-xs">C:\Games\OpenSpeedRun\</code>.</li>
           <li>Run <code class="font-mono text-xs">openspeedrun.exe</code>.</li>
@@ -63,7 +64,7 @@ chmod +x openspeedrun openspeedrun-cfg openspeedrun-cli openspeedrun-autosplitte
         </p>
       </PlatformCard>
 
-      <PlatformCard icon="🍎" title="macOS" note="openspeedrun-darwin-x86_64.zip — untested, best effort">
+      <PlatformCard :icon="faApple" title="macOS" note="openspeedrun-darwin-x86_64.zip — untested, best effort">
         <ol class="list-decimal space-y-2 pl-4 text-ink-muted">
           <li>Download and unzip the archive from the Releases page.</li>
           <li>Run from a terminal: <code class="font-mono text-xs">./openspeedrun</code>.</li>
@@ -78,7 +79,7 @@ xattr -d com.apple.quarantine openspeedrun"
         />
       </PlatformCard>
 
-      <PlatformCard icon="😈" title="FreeBSD" note="build from source">
+      <PlatformCard :icon="faFreebsd" title="FreeBSD" note="build from source">
         <p class="text-ink-muted">
           No prebuilt package yet — build it yourself, same as below.
         </p>
