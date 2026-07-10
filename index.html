@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenSpeedRun — A speedrun timer built for Unix</title>
+    <meta
+      name="description"
+      content="OpenSpeedRun is a modern, minimalist, open-source speedrun timer for Linux, macOS and BSD. Custom themes and GLSL shader backgrounds, external CLI control, an OBS overlay, CSV export, and a beta autosplitter."
+    />
+    <meta property="og:title" content="OpenSpeedRun — A speedrun timer built for Unix" />
+    <meta
+      property="og:description"
+      content="A modern, minimalist, open-source speedrun timer for Unix systems."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#120e0a" />
+    <script>
+      // Set the theme class before Vue mounts, so there's no flash of the
+      // wrong theme on load (see src/composables/useTheme.ts for the toggle
+      // this reads back into once the app boots).
+      try {
+        var stored = localStorage.getItem('osr-site-theme')
+        var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (dark) document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
