@@ -27,6 +27,7 @@ const gallery = [
   { name: 'Landscape', file: 'landscape' },
   { name: 'Orange', file: 'orange' },
 ]
+const baseUrl = import.meta.env.BASE_URL
 
 const vertexExample = `#version 330 core
 
@@ -147,7 +148,11 @@ void main() {
       </p>
       <div class="mt-6 grid grid-cols-2 gap-4">
         <figure v-for="s in gallery" :key="s.file" class="overflow-hidden rounded-lg border border-border">
-          <img :src="`/shaders/${s.file}.png`" :alt="`${s.name} shader preview`" class="w-full" />
+          <img
+            :src="`${baseUrl}shaders/${s.file}.png`"
+            :alt="`${s.name} shader preview`"
+            class="w-full"
+          />
           <figcaption class="border-t border-border bg-surface-alt px-3 py-1.5 text-xs text-ink-muted">
             {{ s.name }}
           </figcaption>
