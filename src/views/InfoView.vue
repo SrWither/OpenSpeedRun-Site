@@ -38,15 +38,10 @@
           <span>
             <strong class="text-ink">Split editor.</strong> Icons, pagination, per-split Best
             Segments/Personal Best, and Average/Median Segments computed automatically from your
-            history.
-          </span>
-        </li>
-        <li class="flex gap-3">
-          <span class="text-accent">&bull;</span>
-          <span>
-            <strong class="text-ink">LiveSplit compatibility.</strong>
-            <code class="font-mono text-sm">.lss</code> import/export, including icons — matched
-            byte-for-byte against real LiveSplit's own icon format.
+            history — including LiveSplit-compatible
+            <code class="font-mono text-sm">.lss</code> import/export. See the
+            <RouterLink to="/splits" class="text-accent hover:underline">Splits</RouterLink>
+            page.
           </span>
         </li>
         <li class="flex gap-3">

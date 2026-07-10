@@ -127,7 +127,8 @@ onUnmounted(() => cancelAnimationFrame(rafId));
         <FeatureCard icon="🧩" title="Full split editor">
           Icons, pagination, per-comparison Personal Best and Best/Average/Median Segments, Game
           Time vs Real Time — and LiveSplit
-          <code class="font-mono text-xs">.lss</code> import/export, icons included.
+          <code class="font-mono text-xs">.lss</code> import/export, icons included. See the
+          <RouterLink to="/splits" class="text-accent hover:underline">Splits</RouterLink> page.
         </FeatureCard>
         <FeatureCard icon="🤖" title="Autosplitter (beta)">
           RetroArch support out of the box, no elevated privileges needed — or opt in to native

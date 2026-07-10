@@ -27,6 +27,11 @@ const router = createRouter({
       component: () => import('../views/ShadersView.vue'),
     },
     {
+      path: '/splits',
+      name: 'splits',
+      component: () => import('../views/SplitsView.vue'),
+    },
+    {
       path: '/autosplitter',
       name: 'autosplitter',
       component: () => import('../views/AutosplitterView.vue'),

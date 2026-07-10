@@ -12,6 +12,7 @@ const links = [
   { to: '/downloads', label: 'Downloads' },
   { to: '/info', label: 'Info' },
   { to: '/shaders', label: 'Shaders' },
+  { to: '/splits', label: 'Splits' },
   { to: '/autosplitter', label: 'Autosplitter', beta: true },
   { to: '/overlay', label: 'OBS Overlay' },
   { to: '/stats', label: 'Stats' },
