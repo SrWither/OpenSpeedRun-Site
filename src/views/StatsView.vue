@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Sparkline from '@/components/Sparkline.vue'
+import AttemptsChart from '@/components/charts/AttemptsChart.vue'
+import SegmentsChart from '@/components/charts/SegmentsChart.vue'
 import StatTile from '@/components/StatTile.vue'
+import { useTheme } from '@/composables/useTheme'
 import { formatMs } from '@/utils/formatTime'
 import {
   parseCsvRows,
@@ -14,6 +16,7 @@ import {
   type SegmentStats,
 } from '@/utils/csvStats'
 
+const { theme } = useTheme()
 const fileName = ref<string | null>(null)
 const error = ref<string | null>(null)
 const dragOver = ref(false)
@@ -119,12 +122,8 @@ function onDrop(e: DragEvent) {
       </div>
 
       <div v-if="attemptStats.series.length > 1" class="mt-6 rounded-lg border border-border bg-surface p-5">
-        <h3 class="text-sm font-semibold text-ink-muted">
-          Finished-run progression <span class="text-ink-muted/70">(downward = faster)</span>
-        </h3>
-        <div class="mt-3 text-accent">
-          <Sparkline :values="attemptStats.series.map((s) => s.ms)" />
-        </div>
+        <h3 class="text-sm font-semibold text-ink-muted">Finished-run progression</h3>
+        <AttemptsChart :key="theme" class="mt-3" :series="attemptStats.series" />
       </div>
     </section>
 
@@ -142,7 +141,12 @@ function onDrop(e: DragEvent) {
         {{ segmentStats.mostInconsistent.count }} attempts.
       </div>
 
-      <div class="mt-4 overflow-x-auto rounded-lg border border-border">
+      <div class="mt-6 rounded-lg border border-border bg-surface p-5">
+        <h3 class="text-sm font-semibold text-ink-muted">Best / average / worst per split</h3>
+        <SegmentsChart :key="theme" class="mt-3" :splits="segmentStats.splits" />
+      </div>
+
+      <div class="mt-6 overflow-x-auto rounded-lg border border-border">
         <table class="w-full text-left text-sm">
           <thead class="bg-surface-alt text-xs text-ink-muted">
             <tr>
