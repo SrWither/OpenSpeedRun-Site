@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import FeatureCard from "@/components/FeatureCard.vue";
+import {
+  faPalette,
+  faTerminal,
+  faPuzzlePiece,
+  faRobot,
+  faSatelliteDish,
+  faFileCsv,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Purely decorative: makes the hero clock look like a live, running timer
 // instead of a static screenshot. Loops every 60s so it never grows a
@@ -115,30 +123,30 @@ onUnmounted(() => cancelAnimationFrame(rafId));
       </div>
 
       <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <FeatureCard icon="🖼️" title="Themes & shaders">
+        <FeatureCard :icon="faPalette" title="Themes & shaders">
           Colors, fonts, spacing, and animated GLSL shader backgrounds — configure everything from a
           dedicated editor, no JSON hand-editing required.
         </FeatureCard>
-        <FeatureCard icon="🖥️" title="External CLI control">
+        <FeatureCard :icon="faTerminal" title="External CLI control">
           <code class="font-mono text-xs">openspeedrun-cli split</code> lets you bind splits,
           resets, and pauses to system-wide shortcuts — built for Wayland compositors with no global
           hotkey support.
         </FeatureCard>
-        <FeatureCard icon="🧩" title="Full split editor">
+        <FeatureCard :icon="faPuzzlePiece" title="Full split editor">
           Icons, pagination, per-comparison Personal Best and Best/Average/Median Segments, Game
           Time vs Real Time — and LiveSplit
           <code class="font-mono text-xs">.lss</code> import/export, icons included. See the
           <RouterLink to="/splits" class="text-accent hover:underline">Splits</RouterLink> page.
         </FeatureCard>
-        <FeatureCard icon="🤖" title="Autosplitter (beta)">
+        <FeatureCard :icon="faRobot" title="Autosplitter (beta)">
           RetroArch support out of the box, no elevated privileges needed — or opt in to native
           process-memory reading for unmodified PC games.
         </FeatureCard>
-        <FeatureCard icon="📡" title="OBS overlay server">
+        <FeatureCard :icon="faSatelliteDish" title="OBS overlay server">
           A local WebSocket streams your live timer, splits, and comparisons as JSON — drop the
           included browser-source overlay straight into OBS.
         </FeatureCard>
-        <FeatureCard icon="📊" title="CSV export">
+        <FeatureCard :icon="faFileCsv" title="CSV export">
           Export your full attempt and segment history to CSV and build your own stats in whatever
           tool you like — Excel, pandas, Grafana, your call.
         </FeatureCard>
