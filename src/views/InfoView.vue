@@ -28,7 +28,9 @@
           <span class="text-accent">&bull;</span>
           <span>
             <strong class="text-ink">Themes.</strong> Colors, font sizes, spacing, and visibility
-            toggles for every element, plus animated GLSL shader backgrounds — see the
+            toggles for every element, a reorderable section layout (title, timer, splits,
+            footer, and a LiveSplit-style live delta graph), plus animated GLSL shader
+            backgrounds with Shadertoy-style texture channels (2D images and cubemaps) — see the
             <RouterLink to="/shaders" class="text-accent hover:underline">Shaders</RouterLink>
             page.
           </span>

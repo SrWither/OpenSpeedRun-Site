@@ -124,8 +124,9 @@ onUnmounted(() => cancelAnimationFrame(rafId));
 
       <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <FeatureCard :icon="faPalette" title="Themes & shaders">
-          Colors, fonts, spacing, and animated GLSL shader backgrounds — configure everything from a
-          dedicated editor, no JSON hand-editing required.
+          Colors, fonts, spacing, reorderable sections with a live delta graph, and animated GLSL
+          shaders with Shadertoy-style texture channels — configure everything from a dedicated
+          editor, no JSON hand-editing required.
         </FeatureCard>
         <FeatureCard :icon="faTerminal" title="External CLI control">
           <code class="font-mono text-xs">openspeedrun-cli split</code> lets you bind splits,

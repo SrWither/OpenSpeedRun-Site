@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import CodeBlock from '@/components/CodeBlock.vue'
 
+// The site is deployed under a subpath (see `base` in vite.config.ts), so
+// gallery image src's need this prefix — a bare "/shaders/..." resolves to
+// the domain root and 404s in production.
+const base = import.meta.env.BASE_URL
+
 const versions = [
   '1.10',
   '1.20',
@@ -49,6 +54,16 @@ uniform float u_time;
 void main() {
     vec3 color = 0.5 + 0.5 * cos(u_time + v_uv.xyx + vec3(0.0, 2.0, 4.0));
     FragColor = vec4(color, 1.0);
+}`
+
+const channelsExample = `uniform sampler2D bgImage;   // the theme's background image, if any
+uniform sampler2D iChannel0; // 2D image channel
+uniform samplerCube iChannel1; // cubemap channel
+
+void main() {
+    vec4 base = texture(iChannel0, v_uv);
+    vec4 env = texture(iChannel1, vec3(v_uv, 1.0));
+    FragColor = mix(base, env, 0.5);
 }`
 </script>
 
@@ -130,6 +145,36 @@ void main() {
         >
         for the full uniform list and more conventions.
       </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-bold">Channels</h2>
+      <p class="mt-3 text-ink-muted">
+        Beyond the theme's background image, a shader can declare extra texture inputs —
+        Shadertoy-style <code class="font-mono text-sm">iChannel0</code>,
+        <code class="font-mono text-sm">iChannel1</code>, and so on, starting at 0. Configure them
+        from <code class="font-mono text-sm">openspeedrun-cfg</code>'s Shader tab &rarr;
+        <strong class="text-ink">Manage Channels</strong> — each channel is a property of the
+        shader file itself (saved next to it), so it travels with the shader across themes, not
+        tied to whichever theme happens to select it.
+      </p>
+      <ul class="mt-3 list-disc space-y-1.5 pl-5 text-ink-muted">
+        <li>
+          <strong class="text-ink">2D image</strong> — a single texture, sampled as
+          <code class="font-mono text-sm">sampler2D</code>.
+        </li>
+        <li>
+          <strong class="text-ink">Cubemap</strong> — six faces (+X/-X/+Y/-Y/+Z/-Z), sampled as
+          <code class="font-mono text-sm">samplerCube</code>. Handy for reflections/environment
+          maps ported from Shadertoy.
+        </li>
+      </ul>
+      <p class="mt-3 text-ink-muted">
+        The background image itself is independent from channels — it's bound to
+        <code class="font-mono text-sm">bgImage</code>, not
+        <code class="font-mono text-sm">iChannel0</code>, so channel numbering starts clean at 0:
+      </p>
+      <CodeBlock class="mt-4" label="channels excerpt" :code="channelsExample" />
     </section>
 
     <section class="mt-10">
